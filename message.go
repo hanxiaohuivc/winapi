@@ -30,6 +30,8 @@ const (
 	WM_GETMINMAXINFO uint32 = 0x0024
 
 	WM_COMMAND uint32 = 0x0111
+
+	WM_TIMER uint32 = 0x0113
 )
 
 type MSG struct {

@@ -239,6 +239,38 @@ func CreateWindow(ClassName string, WindowName string, Style uint32, ExStyle uin
 	return
 }
 
+func SetTimer(hWnd HWND, nIDEvent uint32, uElapse uint32) (uint32, err error) {
+
+	r1, _, e1 := syscall.Syscall6(procSetTimer.Addr(), 4,
+		uintptr(hWnd), uintptr(nIDEvent), uintptr(uElapse), uintptr(0), 0, 0)
+	if r1 == 0 {
+		if e1 != 0 {
+			err = error(e1)
+		} else {
+			err = errors.New("winapi: SetTimer failed.")
+		}
+	} else {
+		hWnd = HWND(r1)
+	}
+	return
+}
+
+func KillTimer(hWnd HWND, nIDEvent uint32) (uint32, err error) {
+
+	r1, _, e1 := syscall.Syscall6(procKillTimer.Addr(), 4,
+		uintptr(hWnd), uintptr(nIDEvent), 0, 0, 0, 0)
+	if r1 == 0 {
+		if e1 != 0 {
+			err = error(e1)
+		} else {
+			err = errors.New("winapi: KillTimer failed.")
+		}
+	} else {
+		hWnd = HWND(r1)
+	}
+	return
+}
+
 const (
 	SW_HIDE            int32 = 0
 	SW_SHOWNORMAL      int32 = 1

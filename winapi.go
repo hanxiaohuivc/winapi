@@ -59,6 +59,10 @@ var (
 	procCreateMenu      = dll_user.NewProc("CreateMenu")
 	procCreatePopupMenu = dll_user.NewProc("CreatePopupMenu")
 	procDestroyMenu     = dll_user.NewProc("DestroyMenu")
+
+	// 定时
+	procSetTimer  = dll_user.NewProc("SetTimer")
+	procKillTimer = dll_user.NewProc("KillTimer")
 )
 
 var (
